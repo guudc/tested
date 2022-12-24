@@ -1,0 +1,177 @@
+
+<button onclick="newUser()">New</button>
+<button onclick="isVali()">checkValid</button>
+<button onclick="newProposal()">new Proposal</button>
+<button onclick="getProposal()">Get Proposal</button>
+<button onclick="modifyProposal()">Modify Proposal</button>
+<button onclick="removeProposal()">Remove Proposal</button>
+<button onclick="gaProposal()">All Proposal</button> 
+
+
+<script>
+   
+    function newUser(){ 
+        //testing pay functions
+        getUser()
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    function isVali(){ 
+        //testing pay functions
+        isValid()
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    function newProposal(){ 
+        //testing pay functions
+        prop(prompt("title"))
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    function getProposal(){ 
+        //testing pay functions
+        gProp(prompt("Id"))
+        .then(res =>{
+            console.log(res)
+         })
+    }
+    function gaProposal(){ 
+        //testing pay functions
+        allProp()
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    function modifyProposal(){ 
+        //testing pay functions
+        mProp(prompt("Id"))
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    function removeProposal(){ 
+        //testing pay functions
+        rProp(prompt("Id"))
+        .then(res =>{
+            console.log(res)
+         })
+    } 
+    
+    
+    async function isValid(){
+      return fetch("/state", {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }   
+    async function getUser(){
+        const data = {
+            //wallet:"0x5918F3F897316E662dC3D3B8109A336e5EAF8745"
+            wallet:"0x2d31A3A081633917f63bec6811432bc718d3afBa"
+        }
+        return fetch("/addwallet", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)// body data type must match "Content-Type" header
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }   
+    async function prop(title){
+        const data = {
+            'title':title,
+            body:"Nothing to do",
+            method: "No method",
+            conclusion: "No conclusion",
+            action: "Transfer Token",
+            wallet: "0x5918F3F897316E662dC3D3B8109A336e5EAF8745"
+        }
+        return fetch("/newproposal", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }
+    async function gProp(id){
+        const data = {
+            id:id
+        }
+        return fetch("/getproposal", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)// body data type must match "Content-Type" header
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }  
+    async function mProp(id){
+        const data = {
+            id:id,
+            status:'expired',
+            title:'What If'
+        }
+        return fetch("/modifyproposal", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)// body data type must match "Content-Type" header
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }   
+    async function rProp(id){
+        const data = {
+            id:id,
+       }
+        return fetch("/removeproposal", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)// body data type must match "Content-Type" header
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }   
+    async function allProp(){
+        return fetch("/allproposal", {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+      }).then((response) => response.json()
+        .then((data) => {return data}))
+    }   
+    
+</script>

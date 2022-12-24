@@ -1,0 +1,39 @@
+Results for payments
+
+    
+    {
+    cardId":"06e5d00f-db6a-4d18-87ed-9e59e53cb05f",
+    "iKey":"381cf21d-67fd-4bb1-914b-be0b37b0def5",
+    "status":true,
+    
+  "data": {
+    "id": "1d6b105a-ed1a-4e0b-b3f3-9550a7b707f3",
+    "type": "payment",
+    "status": "action_required",
+    "description": "Payment",
+    "amount": {
+      "amount": "5.66",
+      "currency": "USD"
+    },
+    "createDate": "2022-08-04T13:27:54.353Z",
+    "updateDate": "2022-08-04T13:27:55.100267Z",
+    "merchantId": "3b618da4-0946-48f5-8e73-f5f7440a7876",
+    "merchantWalletId": "1000895254",
+    "source": {
+      "id": "53a58036-5314-4593-8f0d-5705ebd103db",
+      "type": "card"
+    },
+    "requiredAction": {
+      "type": "three_d_secure_required",
+      "redirectUrl": "https://web-sandbox.circle.com/v1/3ds/session/cfddd18e-5f40-344e-82c8-460e891991df"
+    },
+    "refunds": [],
+    "verification": {},
+    "metadata": {
+      "phoneNumber": "+14155555555",
+      "email": "satoshi@circle.com"
+    }
+  }
+}
+
+ 

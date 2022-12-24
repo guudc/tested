@@ -1,0 +1,65 @@
+READ ME
+ 
+Deploy Smart contracts
+    
+    go to src/contracts to deploy neccesary contracts
+    configure data.js with neccesary parametres
+    
+Build the package
+   
+   run npm install
+
+Start the server
+    
+    node server.js
+
+
+Api gateway
+
+
+ 
+    
+How to add a new buy to batch
+
+    Make an APi call to /buy
+      {
+        userid, amount
+      }
+returns a process result    
+    
+How to add a new sell to batch
+
+    Make an APi call to /sell
+      {
+        userid, amount
+      }
+returns a process result
+
+How to add start processing deposit
+    Make an APi call to /processbatch (No parametre)
+returns a process result
+
+How to add start processing withdraw
+    Make an APi call to /processwithdraw (No parametre)
+returns a process result
+
+How to get user data
+
+    Make an API call to /getuser
+    
+How to create new user
+
+    Make an API call to /newuser 
+    
+    
+Usage of Test
+  start the server
+  node server.js
+  
+  go to the web browser and type in
+  
+  localhost:8000/test.html
+  
+  
+You can edit the test file in test/test.html
+  
