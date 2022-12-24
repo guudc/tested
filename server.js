@@ -6,7 +6,7 @@ const app = express()
 
 app.use("/", route)
 
-let port = process.env.PORT || 8000
+let port = process.env.PORT || 80
 
 app.listen(port, () => {
     // eslint-disable-next-line no-console
