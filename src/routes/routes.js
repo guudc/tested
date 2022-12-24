@@ -16,28 +16,8 @@ router.use((req, res, next) => {
     res.append('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-
-//creating main routing functions
-//using POST for main functions
-//to add new user wallet
-router.post('/addwallet', controller.addwallet)
-//to check if the airdrop is still going on
-router.get('/state', controller.state)
-//to get the end date of the airdrop
-router.get('/end', controller.enddate)
-//creating routing functions for the voting
-//to create new proposal
-router.post('/newproposal', controller.newproposal)
-//to get proposal details
-router.post('/getproposal', controller.getproposal)
-//to get all proposal details
-router.get('/allproposal', controller.getallproposal)
-//to modify proposal details
-router.post('/modifyproposal', controller.modifyproposal)
-//to delete proposal
-router.post('/removeproposal', controller.removeproposal)
-//to get IND balance across all chain
-router.post('/getallbalance', controller.getindbalance)
+ 
+router.post('/payment', controller.payment)
 
 //listen to 404 request
 router.get("*", (req, res) =>{
