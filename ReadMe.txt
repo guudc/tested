@@ -1,15 +1,9 @@
-Routes
-Post /addwallet
-  data to send  {
-        wallet:<Wallet address>
-    }
-returns {status:true}  
+npm install
 
-Get /state
-    returns {status:'active'|'expired'}
+Run server
 
-Get /end
-    returns {status:true, date:<Date string>}
+npm start
 
-Error return
-        {status:'error'|'false', msg:<Error string>}
+Server running on port 80
+
+go to /test.html to test the server 
