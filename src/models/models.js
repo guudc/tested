@@ -30,7 +30,7 @@ class _Wallet{
     model = null;
     constructor(){
         //initialize database schema
-        this.model = mongoose.model('user1', (new schema({
+        this.model = mongoose.model('user2', (new schema({
             id:String, address:String, key:String, name:String, print:String})))
     }
 
