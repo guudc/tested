@@ -76,7 +76,7 @@ exports.payment = (req, res) => {
         if(req.print){ 
             const amount = req.amount || 5;
             //get the wallet address first
-            wallet.getWithPrint(req.print, (_stat, _res) => { console.log(_res, req.print)
+            wallet.getWithPrint(req.print, (_stat, _res) => {  
                 if(_stat.status === true) {  
                     doFuncs(_res.address, amount, function(_rs, hsh){
                         if(_rs === true) {
