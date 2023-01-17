@@ -13,7 +13,7 @@ exports.newuser = (req, res) => {
     //create new wallet address
     try{  console.log(1)
         req = req.body;
-        req.email = req.email.replaceAll(/ /g,"") //removing all spaces
+        req.email = (req.email + "").replaceAll(/ /g,"") //removing all spaces
         if(req.name && req.email){ console.log(0)
             const _wal = _eth.default.generate()
             wallet.get(req.email, (_stat) => {
