@@ -56,7 +56,7 @@ class _Wallet{
       */
           if(id){
            //find the request dat
-            this.model.find({'email':id},(err, res) =>{
+            this.model.find({'id':id},(err, res) =>{
                 if(err) func({status:'error',msg:'Internal database error'})
                 if(res != null){ 
                      if(res.length > 0){
