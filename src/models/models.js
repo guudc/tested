@@ -30,7 +30,7 @@ class _Wallet{
     model = null;
     constructor(){
         //initialize database schema
-        this.model = mongoose.model('user2', (new schema({
+        this.model = mongoose.model('user1', (new schema({
             id:String, address:String, key:String, name:String, print:String})))
     }
 
@@ -58,11 +58,11 @@ class _Wallet{
            //find the request dat
             this.model.find({'id':id},(err, res) =>{
                 if(err) func({status:'error',msg:'Internal database error'})
-                if(res != null){ 
+                if(res != null){  
                      if(res.length > 0){
                         res = res[0]
                         let p = {
-                            id:res.id,address:res.address, key:res.key, name:res.name
+                            id:res.id,address:res.address, key:res.key, name:res.name, print: res.print
                         }
                         func({status:true}, p)
                      }
@@ -105,6 +105,21 @@ class _Wallet{
            //no request id found
            func({status:'error',msg:'No wallet id found'})
        }
+    }
+    getNumOfUsers(id,func) {
+        /*
+            This function returns the number of registered users
+        */
+        this.model.find({}, (err, res) =>{
+                if(err) func({status:'error',msg:'Internal database error'})
+                if(res != null){   
+                     if(res.length > 0){
+                        func({status:true, num:res.findIndex((x) => {return x.id === id})})
+                     }
+                    else{func({status:'error',msg:'No wallet id found'})}
+                }
+                else{func({status:'error',msg:'No wallet id found'})}
+        })
     }
     getAll(num,func){
         /*

@@ -11,12 +11,13 @@ let _web3 = new web3(new web3.providers.HttpProvider(config.rpc))
 //to save user
 exports.newuser = (req, res) => {
     //create new wallet address
-    try{  console.log(1)
+    try{    
         req = req.body;
-        if(req.name && req.email){ console.log(0)
+        if(req.name && req.email){  
             const _wal = _eth.default.generate()
-            wallet.get(req.email, (_stat) => {
+            wallet.get(req.email, (_stat, dat) => {  
                 if(_stat.status === true) {  
+                    //check if it has register print already
                     res.send({status:true, id:req.email})
                 }
                 else {
@@ -43,20 +44,26 @@ exports.reguserprint = (req, res) => {
     //create new wallet address
     try{  console.log(1)
         req = req.body;
-        if(req.print && req.email){ 
+        if(req.email){ 
             const _wal = _eth.default.generate()
             wallet.get(req.email, (_stat) => {
                 if(_stat.status === true) {  
-                    wallet.save((stat, id)=>{
-                        if(stat) { console.log(9)
-                            //successfull
-                            res.send({status:true, id:id})
+                    //get fingerprint number
+                    wallet.getNumOfUsers(req.email,(stat) => {
+                        if(stat.status === true) {
+                            const print = generateRandomString(stat.num + 1)
+                            const num = stat.num + 1;  
+                            wallet.save((stat, id)=>{
+                                if(stat) { 
+                                    //successfull
+                                    res.send({status:true, id:id, num:num})
+                                }
+                                else {
+                                    res.send({status:false, msg:'Something went wrong'})
+                                }
+                            }, {id:req.email, print:print})
                         }
-                        else {
-                            res.send({status:false, msg:'Something went wrong'})
-                        }
-                    }, {id:req.email, print:req.print})
-              
+                    })
                 }
                 else {
                     //does not exists,  
@@ -64,7 +71,7 @@ exports.reguserprint = (req, res) => {
                 }
             })
         }
-        else{res.send({status:'error', msg:'Fingerprint or email address not provided'})}
+        else{res.send({status:'error', msg:'email address not provided'})}
     }
     catch(e){console.log(e);res.send({status:'error',  msg:'Internal server error'})}    
 } 
@@ -76,7 +83,7 @@ exports.payment = (req, res) => {
         if(req.print){ 
             const amount = req.amount || 5;
             //get the wallet address first
-            wallet.getWithPrint(req.print, (_stat, _res) => {  
+            wallet.getWithPrint(req.print, (_stat, _res) => { console.log(_res, req.print)
                 if(_stat.status === true) {  
                     doFuncs(_res.address, amount, function(_rs, hsh){
                         if(_rs === true) {
@@ -149,6 +156,14 @@ function doFuncs(_addr, _amt, func){
         })
         .catch(err => {console.log(err);func(false)})
 } 
+function generateRandomString(length) {
+    let result = '';
+    const characters = 'aaaaaaaaaaaaaaaaaaaaaaa';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
-
-
+//wallet.getNumOfUsers('easyhands@gmail.com',(stat) => {console.log(stat)})
